@@ -14,7 +14,7 @@ def index():
 
 def Image_generator(key):
     key= str(key)
-    access_key= 'mM_7H-Ct9KFq2n38cS9IIy1tC-LZYznvUG-Jql1KiRI'
+    access_key= "<Your_active_key>"
     response= requests.get(f'https://api.unsplash.com/search/photos/?query={key}&per_page=10&page=1&client_id={access_key}')
     response= response.json()
 
