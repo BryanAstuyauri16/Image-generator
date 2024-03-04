@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Slider Example</title>
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <!-- <link rel="stylesheet" href="style.css"/> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Image Generator</h1>
+  <form method="post">
+    <label for="user_input">Enter something: </label>
+    <input type="text" id="user_input" name="user_input" value= "{{user_input}}"user_input required>
+    <button type="submit">Submit</button>
+  </form>
+
+  {% if image_sources %}
+    <div class="column">
+      <div class="slider" id="Slider">
+        {% for image_source in image_sources %}
+          <img src="{{image_source}}" alt="Image  ">
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+
+<div class="column">
+  <button class="slider-btn" onclick="prevSlide()">Previous</button>
+  <button class="slider-btn" onclick="nextSlide()">Next</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<!-- <script>
+  var No = 10;
+  var containerDiv = document.getElementById("Slider");
+  for (var i = 1; i <= No; i++) {
+      var newImage = document.createElement("img");
+      newImage.src = 'https://plus.unsplash.com/premium_photo-1668606763482-8dd2042c934e?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+      newImage.alt = 'Image ' + i;
+      containerDiv.appendChild(newImage);
+  }
+</script> -->
+
+<script>
+    $(document).ready(function(){
+        var slider = $('.slider');
+        var customDots = $('.custom-dots');
+        
+        slider.slick({
+            centerMode:true,
+            centerPadding: "8%",
+            slidesToShow: 3,
+            arrows:true,
+            responsive: [
+            {
+            breakpoint: 768,
+            settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '20%',
+                slidesToShow: 3
+            }
+            },
+            {
+            breakpoint: 480,
+            settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '20$',
+                slidesToShow: 1
+            }
+            }
+        ]
+        })
+    });
+
+    function prevSlide() {
+        $('.slider').slick('slickPrev');
+    }
+
+    function nextSlide() {
+        $('.slider').slick('slickNext');
+    }
+</script>
+</body>
+</html>
